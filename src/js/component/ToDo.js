@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 export function ToDo() {
 	const [task, setTask] = React.useState("");
@@ -6,9 +7,13 @@ export function ToDo() {
 
 	return (
 		<div>
-			<h5>ToDos List</h5>
+			<h5 className="header">
+				<i className="fas fa-list-ul"></i>
+				To Do List!
+			</h5>
 			<input
 				type="text"
+				placeholder="What need TGD?"
 				onChange={e => setTask(e.target.value)}
 				value={task}
 				onKeyDown={e => {
@@ -20,7 +25,7 @@ export function ToDo() {
 				}}
 			/>
 
-			<ul>
+			<ul className="list-group">
 				{list.map((item, index) => {
 					return (
 						<li className="listItem" key={index}>
@@ -31,11 +36,15 @@ export function ToDo() {
 										return i !== index;
 									});
 									setList(newListV);
-								}}></button>
+								}}>
+								<i className="fas fa-check-circle"></i>
+							</button>
 						</li>
 					);
 				})}
-				<p>{`There's ${list.length} items left`}</p>
+				<p>
+					<strong>{`There's ${list.length} items left`}</strong>
+				</p>
 			</ul>
 		</div>
 	);
